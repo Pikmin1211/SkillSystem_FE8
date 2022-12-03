@@ -396,7 +396,7 @@
 //Indoor/Outdoor Fighter: +10 Hit and Avo when fighting indoors/outdoors.
 //By Sme
 #define IndoorFighterID 217
-#define OutdoorFighterID 218
+#define OutdoorFighterID 255
 
 //Elbow Room: +3 damage dealt when on open terrain.
 //Author Unknown (Initial Commit)
@@ -755,6 +755,8 @@
 //Vengeance: Add half of damage taken to damage dealt. (Skill % activation)
 //By Sme
 #define VengeanceID 38
+
+#define InspireID 218
 
 //Range Skills
 
