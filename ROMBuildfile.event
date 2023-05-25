@@ -1,6 +1,7 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
     #include "CustomDefinitions.event"
+    #define PROC_YIELD PROC_YEILD
 //PROTECT $25224
     ORG FreeSpace
 
