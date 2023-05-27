@@ -11,12 +11,14 @@ MAKE_DIR = @mkdir -p $(dir $@)
 # Make subfiles
 MAKE := $(realpath .)/Make
 include $(MAKE)/Tools.mak
+include $(MAKE)/FE-PyTools.mak
+include $(MAKE)/Text.mak
 
 # Build flags
 EA_FLAGS = --nocash-sym
 
 # Rule to build the target ROM
-$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE)
+$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE) $(TEXT_INSTALLER)
 	@echo Building $(ROM_TARGET).
 	@cp -f $(ROM_SOURCE) $(ROM_TARGET)
 	@$(EA_CORE) A FE8 -output:$(ROM_TARGET) -input:$(EVENT_MAIN) $(EA_FLAGS) || (rm -f $(ROM_TARGET) $(ROM_TARGET:.gba=.sym) && false)
@@ -28,9 +30,11 @@ hack: $(ROM_TARGET)
 
 # Files and directories to clean
 CLEAN_FILES := \
-$(ROM_TARGET) $(ROM_TARGET:.gba=.sym)
+$(ROM_TARGET) $(ROM_TARGET:.gba=.sym) \
+$(TEXT_INSTALLER) $(TEXT_DEFINITONS)
 
 CLEAN_DIRS := \
+$(TEXT_ENTRIES)
 
 # make clean
 clean:

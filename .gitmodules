@@ -1,3 +1,6 @@
 [submodule "Tools/EventAssembler"]
 	path = Tools/EventAssembler
 	url = git@github.com:StanHash/EventAssembler
+[submodule "Tools/FE-PyTools"]
+	path = Tools/FE-PyTools
+	url = https://github.com/StanHash/FE-PyTools
