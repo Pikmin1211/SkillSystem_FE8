@@ -11,8 +11,9 @@ PARSE_DEFINITIONS := $(TEXT)/ParseDefinitions.txt
 ALL_TEXT := $(wildcard $(TEXT_FILES)/*.txt)
 
 # Text Buildfile to installer and definitions
-$(TEXT_INSTALLER) $(TEXT_DEFINITIONS): $(TEXT_BUILDFILE) $(ALL_TEXT) $(PARSE_DEFINITIONS)
+$(TEXT_INSTALLER) $(TEXT_DEFINITIONS): $(PARSEFILE) $(TEXT_BUILDFILE) $(ALL_TEXT) $(PARSE_DEFINITIONS)
 	$(NOTIFY_PROCESS)
 	$(MAKE_DIR)
-	@python3 $(TEXT_PROCESS) $(TEXT_BUILDFILE) --installer $(TEXT_INSTALLER) \
-	--definitions $(TEXT_DEFINITIONS) --parser-exe $(PARSEFILE) --depends $(PARSE_DEFINITIONS)
+	@python3 $(TEXT_PROCESS) $(TEXT_BUILDFILE) \
+	--installer $(TEXT_INSTALLER) --definitions $(TEXT_DEFINITIONS) \
+	--parser-exe $(PARSEFILE) --parse-definitions $(PARSE_DEFINITIONS)
