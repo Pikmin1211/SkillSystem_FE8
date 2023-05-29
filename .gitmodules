@@ -1,6 +1,9 @@
 [submodule "Tools/EventAssembler"]
 	path = Tools/EventAssembler
-	url = git@github.com:StanHash/EventAssembler
+	url = https://github.com/StanHash/EventAssembler
 [submodule "Tools/FE-PyTools"]
 	path = Tools/FE-PyTools
 	url = https://github.com/StanHash/FE-PyTools
+[submodule "Tools/Elucidator"]
+	path = Tools/Elucidator
+	url = https://github.com/Pikmin1211/Elucidator
