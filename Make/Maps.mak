@@ -6,7 +6,7 @@ MAPS_DMP := $(MAPS)/dmp
 
 # Files
 MAPS_INSTALLER := $(MAPS)/MasterMapInstaller.event
-MAPS_ALL_TMX := $(wildcard $(MAPS_TMX)/*.tmx)
+MAPS_ALL_TMX := $(shell find $(MAPS_TMX) -type f -name "*.tmx")
 MAPS_ALL_EVENT := $(patsubst $(MAPS_TMX)/%.tmx, $(MAPS_EVENT)/%.event, $(MAPS_ALL_TMX))
 MAPS_ALL_DATA := $(patsubst $(MAPS_TMX)%.tmx, $(MAPS_DMP)/%_data.dmp, $(MAPS_ALL_TMX))
 

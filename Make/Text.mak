@@ -8,7 +8,7 @@ TEXT_BUILDFILE := $(TEXT)/text_buildfile.txt
 TEXT_INSTALLER := $(TEXT)/InstallTextData.event
 TEXT_DEFINITIONS := $(TEXT)/TextDefinitions.event
 PARSE_DEFINITIONS := $(TEXT)/ParseDefinitions.txt
-ALL_TEXT := $(wildcard $(TEXT_FILES)/*.txt)
+ALL_TEXT := $(shell find $(TEXT_FILES) -type f -name "*.txt")
 
 # Text Buildfile to installer and definitions
 $(TEXT_INSTALLER) $(TEXT_DEFINITIONS): $(PARSEFILE) $(TEXT_BUILDFILE) $(ALL_TEXT) $(PARSE_DEFINITIONS)

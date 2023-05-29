@@ -15,12 +15,13 @@ include $(MAKE)/FE-PyTools.mak
 include $(MAKE)/Elucidator.mak
 include $(MAKE)/Text.mak
 include $(MAKE)/Maps.mak
+include $(MAKE)/Tables.mak
 
 # Build flags
 EA_FLAGS = --nocash-sym
 
 # Rule to build the target ROM
-$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE) $(TEXT_INSTALLER) $(MAPS_INSTALLER)
+$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE) $(TEXT_INSTALLER) $(MAPS_INSTALLER) $(TABLES_INSTALLER)
 	$(NOTIFY_PROCESS)
 	$(MAKE_DIR)
 	@echo Building $(ROM_TARGET).
@@ -36,11 +37,13 @@ hack: $(ROM_TARGET)
 CLEAN_FILES := \
 $(ROM_TARGET) $(ROM_TARGET:.gba=.sym) \
 $(TEXT_INSTALLER) $(TEXT_DEFINITIONS) \
-$(MAPS_INSTALLER)
+$(MAPS_INSTALLER) \
+$(TABLES_INSTALLER)
 
 CLEAN_DIRS := \
 $(TEXT_ENTRIES) \
-$(MAPS_EVENT) $(MAPS_DMP)
+$(MAPS_EVENT) $(MAPS_DMP) \
+$(TABLES_EVENT)
 
 # make clean
 clean:
