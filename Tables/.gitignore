@@ -5,5 +5,8 @@
 # generated table installer
 TableInstaller.event
 
+# generated event files
+event/
+
 #openoffice lock files
 *.csv#
