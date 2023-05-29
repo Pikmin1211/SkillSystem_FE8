@@ -7,8 +7,10 @@ SRC_EVENT := $(CHAX)/event
 CLIB := $(CHAX)/FE-CLib-Decompatible
 CLIB_INCLUDE := $(CLIB)/include
 
-# Fils
+# Files
 CHAX_INSTALLER := $(CHAX)/MasterChaxInstaller.event
+CFILES := $(shell find $(SRC) -type f -name '*.c')
+LYNFILES := $(patsubst $(SRC)%.c, $(SRC_EVENT)%.lyn.event, $(CFILES))
 
 # Lyn
 LYN_REFERENCE := $(CHAX)/definitions.o
@@ -27,33 +29,36 @@ ASFLAGS := $(ARCH) $(INCFLAGS)
 
 # OBJ to event rule
 $(SRC_EVENT)%.lyn.event: $(SRC)%.o $(LYN_REFERENCE)
-	@mkdir -p $(dir $@)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@$(LYN) $< $(LYN_REFERENCE) > $@
 
 # OBJ to DMP rule
 $(SRC)%.dmp: $(SRC)%.o
-	@mkdir -p $(dir $@)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@$(OBJCOPY) -S $< -O binary $@
 
 # ASM to OBJ rule
 %.o: %.s
-	@mkdir -p $(dir $@)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@$(AS) $(ASFLAGS) -I $(dir $<) $< -o $@
 
-# C to ASM rule
+# C to OBJ rule
 $(SRC)%.o: $(SRC)%.c
-	@mkdir -p $(dir $@)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # C to ASM rule
 $(SRC)/asm/%.asm: $(SRC)%.c
-	@mkdir -p $(dir $@)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@$(CC) $(CFLAGS) -S $< -o $@ -fverbose-asm
-
-# ASM/C and generated files
-CFILES := $(shell find $(SRC) -type f -name '*.c')
-LYNFILES := $(patsubst $(SRC)%.c, $(SRC_EVENT)%.lyn.event, $(CFILES))
 
 # Lyn files to Installer
 $(CHAX_INSTALLER): $(LYNFILES)
+	$(NOTIFY_PROCESS)
+	$(MAKE_DIR)
 	@python3 $(FILES_TO_INSTALLER) --input $(LYNFILES) --output $(CHAX_INSTALLER) --relative-path $(CHAX)

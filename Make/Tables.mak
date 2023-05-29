@@ -12,7 +12,7 @@ TABLES_ALL_EVENT := $(patsubst $(TABLES_CSV)/%.csv, $(TABLES_EVENT)/%.event, $(T
 $(TABLES_EVENT)/%.event: $(TABLES_CSV)/%.csv
 	$(NOTIFY_PROCESS)
 	$(MAKE_DIR)
-	@echo | python3 $(C2EA) -csv $< -out $(TABLES_EVENT)/$*.event $(ROM_SOURCE)
+	@echo | python3 $(C2EA) -csv $< -out $(TABLES_EVENT)/$*.event $(ROM_SOURCE) > /dev/null
 
 # Events to Installer
 $(TABLES_INSTALLER): $(TABLES_ALL_EVENT)
