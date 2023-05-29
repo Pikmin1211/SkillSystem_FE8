@@ -7,3 +7,6 @@
 [submodule "Tools/Elucidator"]
 	path = Tools/Elucidator
 	url = https://github.com/Pikmin1211/Elucidator
+[submodule "Wizardry/CHAX/FE-CLib-Decompatible"]
+	path = Wizardry/CHAX/FE-CLib-Decompatible
+	url = https://github.com/boviex/FE-CLib-Decompatible

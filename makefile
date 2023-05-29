@@ -16,12 +16,13 @@ include $(MAKE)/Elucidator.mak
 include $(MAKE)/Text.mak
 include $(MAKE)/Maps.mak
 include $(MAKE)/Tables.mak
+include $(MAKE)/Wizardry.mak
 
 # Build flags
 EA_FLAGS = --nocash-sym
 
 # Rule to build the target ROM
-$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE) $(TEXT_INSTALLER) $(MAPS_INSTALLER) $(TABLES_INSTALLER)
+$(ROM_TARGET): $(EVENT_MAIN) $(EA_CORE) $(TEXT_INSTALLER) $(MAPS_INSTALLER) $(TABLES_INSTALLER) $(CHAX_INSTALLER)
 	$(NOTIFY_PROCESS)
 	$(MAKE_DIR)
 	@echo Building $(ROM_TARGET).
@@ -38,12 +39,14 @@ CLEAN_FILES := \
 $(ROM_TARGET) $(ROM_TARGET:.gba=.sym) \
 $(TEXT_INSTALLER) $(TEXT_DEFINITIONS) \
 $(MAPS_INSTALLER) \
-$(TABLES_INSTALLER)
+$(TABLES_INSTALLER) \
+$(CHAX_INSTALLER)
 
 CLEAN_DIRS := \
 $(TEXT_ENTRIES) \
 $(MAPS_EVENT) $(MAPS_DMP) \
-$(TABLES_EVENT)
+$(TABLES_EVENT) \
+$(SRC_EVENT)
 
 # make clean
 clean:
